@@ -39,7 +39,7 @@ Lancer l'API : [opt-temps-attente-agences-api](https://github.com/adriens/opt-te
 Récupérer le projet :
 
 ```bash
-git clone https://github.com/HakumenNC/opt-temps-attente-agences-elk.git
+git clone https://github.com/adriens/opt-temps-attente-agences-elk.git
 ```
 
 ```bash
@@ -78,11 +78,13 @@ $ curl -GET http://localhost:8081/temps-attente/agences | jq
 ]
 ```
 
+:bulb: Ou à l'aide d'un client REST ([Postman](https://www.postman.com/downloads/) ou [Insomnia](https://insomnia.rest/))
+
 ### ELK
 
 Adapter l'url de l'api dans la configuration logstash `logstash\pipeline\logstash-waiting-time.conf` :
 
-```conf
+```properties
 ...
     urls => {
       waiting_time => {
@@ -130,9 +132,9 @@ $ docker logs logstash-opt-temps-attente-agences -f
 ...
 ```
 
-Example of part of `stdout` suite à appel à l'api :
+`stdout` d'exemple suite à un appel à l'api :
 
-```conf
+```properties
 {
       "coordonneeYPrecise" => 360314,
              "coordonneeY" => 360315.82239999995,
