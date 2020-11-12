@@ -1,0 +1,2 @@
+- pipeline.id: waiting-time
+  path.config: "/usr/share/logstash/pipeline/logstash-waiting-time.conf"
