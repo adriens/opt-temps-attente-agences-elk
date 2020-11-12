@@ -1,0 +1,44 @@
+version: '3.3'
+services:
+  elasticsearch-opt-temps-attente-agences:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.2
+    container_name: elasticsearch-opt-temps-attente-agences
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - 9200:9200
+    networks:
+      - elastic
+
+  logstash-opt-temps-attente-agences:
+    image: docker.elastic.co/logstash/logstash:7.9.2
+    container_name: logstash-opt-temps-attente-agences
+    volumes:
+      - ./logstash/pipeline/:/usr/share/logstash/pipeline/
+      - ./logstash/config/:/usr/share/logstash/config/
+    depends_on:
+      - elasticsearch-opt-temps-attente-agences
+    networks:
+      - elastic
+
+  kibana-opt-temps-attente-agences:
+    image: docker.elastic.co/kibana/kibana:7.9.2
+    container_name: kibana-opt-temps-attente-agences
+    ports:
+      - 5601:5601
+    environment:
+      ELASTICSEARCH_URL: http://elasticsearch-opt-temps-attente-agences:9200
+      ELASTICSEARCH_HOSTS: http://elasticsearch-opt-temps-attente-agences:9200
+    depends_on:
+      - elasticsearch-opt-temps-attente-agences
+    networks:
+      - elastic
+
+networks:
+  elastic:
+    driver: bridge
