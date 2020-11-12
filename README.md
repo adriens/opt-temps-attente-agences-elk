@@ -1,16 +1,17 @@
 # opt-temps-attente-elk
 
 * [Description](#speech_balloon-description)
-* [Prérequis](#books-prerequis)
+* [Prérequis](#books-prérequis)
 * [Utilisation](#rocket-utilisation)
   * [API](#api)
   * [ELK](#elk)
     * [Logstash](#logstash)
     * [Kibana](#kibana)
-      * [Création de l'Index Pattern](création-de-l-Index-Pattern)
+      * [Création de l'Index Pattern](#création-de-lindex-pattern)
+      * [Dashboards](#dashboards)
     * [Stopper la suite Elastic](#stopper-la-suite-elastic)
 * [Liens utiles](#liens-utiles)
-  * [Aides/guides](#aides/guides)
+  * [Aides/guides](#aidesguides)
   * [Résolutions](#résolutions)
 
 ## :speech_balloon: Description
@@ -26,7 +27,7 @@ L'objectif principale est d'apprendre à:
 
 ## :books: Prérequis
 
-Lancer l'API : [opt-temps-attente-agences-api](https://github.com/adriens/opt-temps-attente-agences-api) par le moyen que vous aurez choisi (`docker`, `mvn`, etc.). L'utilisation de ce projet nécéssite l'installation des outils suivants :
+Lancer l'API : [opt-temps-attente-agences-api](https://github.com/adriens/opt-temps-attente-agences-api) par le moyen que vous aurez choisi (`docker`, `mvn`, etc.). L'utilisation de ce projet nécessite l'installation des outils suivants :
 
 * [git](https://git-scm.com/downloads)
 * [Docker](https://www.docker.com/get-started)
@@ -99,7 +100,7 @@ Adapter l'url de l'api dans la configuration logstash `logstash\pipeline\logstas
 Démarrer la suite Elastic complète :
 
 ```console
-$ docker-compose --project-name opt-temps-attente-agences-logstash -f elk.yml up -d
+$ docker-compose --project-name opt-temps-attente-agences-elk -f elk.yml up -d
 Starting elasticsearch-opt-temps-attente-agences ... done
 Starting kibana-opt-temps-attente-agences        ... done
 Starting logstash-opt-temps-attente-agences      ... done
@@ -201,7 +202,7 @@ Exemples de tableaux de bords :
 ### Stopper la suite Elastic
 
 ```console
-$ docker-compose --project-name opt-temps-attente-agences-logstash -f elk.yml stop
+$ docker-compose --project-name opt-temps-attente-agences-elk -f elk.yml stop
 Stopping logstash-opt-temps-attente-agences      ... done
 Stopping kibana-opt-temps-attente-agences        ... done
 Stopping elasticsearch-opt-temps-attente-agences ... done
